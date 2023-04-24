@@ -19,11 +19,15 @@ public class CubeSpawner : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            var newCube = Instantiate(_cubePrefab);
-            var positionX = Random.Range(_minPositionX, _maxPositionX);
-            var newPosition = new Vector3(positionX, _positionY, _positionZ);
-
-            newCube.transform.position = newPosition;
+            GenerateNewCube();
         }
+    }
+
+    private void GenerateNewCube()
+    {
+        var positionX = Random.Range(_minPositionX, _maxPositionX);
+        var newPosition = new Vector3(positionX, _positionY, _positionZ);
+
+        Instantiate(_cubePrefab, newPosition, Quaternion.identity);
     }
 }
