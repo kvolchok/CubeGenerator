@@ -30,9 +30,7 @@ public class RecoloringBehaviour : MonoBehaviour
     {
         _recoloringTime += Time.deltaTime;
 
-        var progress = _recoloringTime / _recoloringDuration;
-        var currentColor = Color.Lerp(_startColor, _nextColor, progress);
-        _renderer.material.color = currentColor;
+        SetIntermediateColor();
 
         if (_recoloringTime >= _recoloringDuration + _recoloringDelay)
         {
@@ -45,5 +43,12 @@ public class RecoloringBehaviour : MonoBehaviour
     {
         _startColor = _renderer.material.color;
         _nextColor = Random.ColorHSV(_hueMin, _hueMax);
+    }
+    
+    private void SetIntermediateColor()
+    {
+        var progress = _recoloringTime / _recoloringDuration;
+        var currentColor = Color.Lerp(_startColor, _nextColor, progress);
+        _renderer.material.color = currentColor;
     }
 }
